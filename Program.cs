@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using AnotherObserverExample;
 
 namespace Program // Note: actual namespace depends on the project name.
 {
@@ -13,6 +14,22 @@ namespace Program // Note: actual namespace depends on the project name.
             weatherData.SetMeasurements(80, 65, 30.4f);
             weatherData.SetMeasurements(82, 70, 29.2f);
             weatherData.SetMeasurements(78, 90, 29.2f);
+
+            //  This is another observer pattern example.
+            var subject = new Subject();
+            var observerA = new ConcreteObserverA();
+
+            subject.Attach(observerA);
+
+            var observerB = new ConcreteObserverB();
+            subject.Attach(observerB);
+
+            subject.SomeBusinessLogic();
+            subject.SomeBusinessLogic();
+
+            subject.Detach(observerB);
+
+            subject.SomeBusinessLogic();
 
         }
     }
